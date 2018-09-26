@@ -1,0 +1,67 @@
+<!-- Nav tabs -->
+<form class="form-validation" style="margin-top: 10px;">
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <input type="file" ng-model="home.excel" base-sixty-four-input
+                   class="form-control btn btn-default"
+                   required>
+        </div>
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-primary submit-button"
+                    ng-show="home.cellsGot.length > 0 && home.realOrganizationUnit" ng-click="home.onSubmit()">
+                Submit Data
+            </button>
+            &nbsp;&nbsp;
+            <button type="reset" class="btn btn-success submit-button" ng-click="home.cellsGot = []"
+                    ng-show="home.cellsGot.length">
+                Reset
+            </button>
+        </div>
+    </div>
+
+    <table class="table table-bordered" ng-show="home.cellsGot.length > 0">
+        <thead>
+        <tr>
+            <th>Cell</th>
+            <th>
+                Organization Unit
+            </th>
+            <th>
+                Data Element
+            </th>
+            <th>
+                Period
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Value
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="cell in home.cellsGot">
+            <td>{{cell.cell}}</td>
+            <td>
+                <!--{{home.importedOrganisationUnit}}-->
+                {{home.realOrganizationUnit.name}}
+            </td>
+            <td>
+                <!--{{cell.dataElement}}-->
+                {{home.dataElementsFound[cell.dataElement][0].displayName}}
+            </td>
+            <td>
+                {{home.importedPeriod}}
+            </td>
+            <td>
+                <!--{{cell.categoryOptionCombo}}-->
+                {{home.categoryOptionCombosFound[cell.categoryOptionCombo][0].displayName}}
+            </td>
+            <td>
+                {{cell.cellValue.v}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
